@@ -25,6 +25,7 @@ public class UserService {
 		SqlSession sqlSession = MyBatisUtil.open();
 		User result = sqlSession.getMapper(UserMapper.class)
 				.findUserByIdAndPsw(userId, userPsw);
+		sqlSession.commit();
 		MyBatisUtil.close(sqlSession);
 		// 返回结果
 		return result;

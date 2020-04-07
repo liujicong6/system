@@ -41,8 +41,22 @@ public class BookService {
 		SqlSession sqlSession = MyBatisUtil.open();
 		List<Category> categories = sqlSession
 				.getMapper(CategoryMapper.class).listCategories();
+		sqlSession.commit();
 		MyBatisUtil.close(sqlSession);
 		return categories;
+	}
+	/**
+	 * 根据id删除分类
+	 * @param id
+	 * @return 1-成功 0-失败
+	 */
+	public int deleteCategoryById(Integer id) {
+		int result = 0;
+		SqlSession sqlSession = MyBatisUtil.open();
+		result = sqlSession.getMapper(CategoryMapper.class).deleteCategoryById(id);
+		sqlSession.commit();
+		MyBatisUtil.close(sqlSession);
+		return result;
 	}
 }
 

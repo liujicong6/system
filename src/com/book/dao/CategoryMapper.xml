@@ -13,8 +13,14 @@
 	</insert>
 	<!-- 获取所有分类信息（id倒叙） -->
 	<select id="listCategories" resultType="Category">
-		select * from system_book_category order by id desc;
+		select * from system_book_category order by id desc
 	</select>
+	<!-- 根据id删除分类（不能删除已经存在书籍的分类） -->
+	<delete id="deleteCategoryById" parameterType="int">
+		delete from system_book_category 
+			where id=#{id} 
+				and not exists(select * from system_book_info where categoryId=#{id})
+	</delete>
 </mapper>
 
 

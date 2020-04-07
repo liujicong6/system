@@ -15,6 +15,7 @@
     	<div id="main">
 			<div class="section-left">
 				<h2>图书分类信息</h2>
+				<p style="color: red;">${msg }</p>
 				<table class="table" cellspacing="0">
 			    	<tr>
 			    		<td class="header" width="200">图书分类</td>
@@ -23,7 +24,7 @@
 			    	<c:forEach items="${categories }" var="cagr">	    
 			    	<tr>
 			    		<td>${cagr.category }</td>
-			    		<td><a href="#?id=${cagr.id }">删除</a></td>
+			    		<td><a href="${pageContext.request.contextPath}/delete_category?id=${cagr.id }">删除</a></td>
 			    	</tr>			    
 			   		</c:forEach>		    
 			    </table>

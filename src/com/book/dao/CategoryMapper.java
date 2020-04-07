@@ -22,6 +22,12 @@ public interface CategoryMapper {
 	 * @return
 	 */
 	List<Category> listCategories();
+	/**
+	 * 根据id删除对应分类
+	 * @param id
+	 * @return 1-c成功 0-失败
+	 */
+	int deleteCategoryById(Integer id);
 }
 
 
