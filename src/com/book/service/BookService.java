@@ -1,10 +1,13 @@
 package com.book.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.book.dao.BookInfoMapper;
 import com.book.dao.CategoryMapper;
+import com.book.pojo.BookInfo;
 import com.book.pojo.Category;
 import com.book.tools.MyBatisUtil;
 
@@ -57,6 +60,27 @@ public class BookService {
 		sqlSession.commit();
 		MyBatisUtil.close(sqlSession);
 		return result;
+	}
+	/**
+	 * 添加新书籍到数据库中
+	 * @param book
+	 * @return 1-成功 0-失败
+	 */
+	public int addNewBook(BookInfo book) {
+		int result = 0;
+		SqlSession sqlSession = MyBatisUtil.open();
+		result = sqlSession.getMapper(BookInfoMapper.class).addNewBook(book);
+		sqlSession.commit();
+		sqlSession.close();
+		return result;
+	}
+	
+	public List<BookInfo> listBooks(){
+		List<BookInfo> array=new  ArrayList<>();
+		SqlSession session=MyBatisUtil.open();
+		array=session.getMapper(BookInfoMapper.class).list();
+		MyBatisUtil.close(session);
+		return array;
 	}
 }
 
